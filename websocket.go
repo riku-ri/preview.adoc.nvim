@@ -185,16 +185,7 @@ func main() {
 								);
 								const viewportHeight = window.innerHeight;
 								const maxScrollableHeight = totalHeight - viewportHeight;
-								const targetScrollPosition = Math.max(
-									0 ,
-									maxScrollableHeight * (percentage / 100) - (0.1*window.innerHeight)
-									// minus 0.1 window height to make current line in page but not top
-									// 0.1 is just a random number,
-									// generally it should be 0.5 to make it in center of page
-									// but sometimes asciidoc may add someting before the actual content
-									// and content percentage is not always equal to content percentage
-									// So here use 0.1 as temp
-								);
+								const targetScrollPosition = maxScrollableHeight * (percentage / 100)
 								window.scrollTo({
 									top: targetScrollPosition,
 									behavior: 'smooth'
