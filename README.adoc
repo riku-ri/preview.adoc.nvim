@@ -25,22 +25,25 @@ But I'm going to add the auto scroll feature for asciidoc.
 
 ==== For building
 
-- golang
+* golang
 
 ==== For using
 
-- Linux
-- neovim
+* Linux
+* neovim
++
 ____
 vim may work, but I never test vim
 ____
-- python3
-- A web browser
+* python3
+* A web browser
++
 ____
 link:preview.nvim[`preview.nvim`] use chromium by default,
 this can be set by vim variable `g:preview_browser`
 ____
-- asciidoctor
+* asciidoctor
++
 ____
 This is defined in link:asciidoc.vim[asciidoc.vim],
 replace `s:cmd` to change it
