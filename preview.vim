@@ -115,6 +115,7 @@ if(filereadable(g:preview_root.'/'.&ft.'.body.vim'))
 		execute "augroup preview".&ft
 			autocmd!
 			autocmd InsertLeave,TextChanged,TextChangedI <buffer> silent execute 'so '.g:preview_root.'/'.&ft.'.body.vim'
+			autocmd CursorMoved <buffer> silent execute 'so '.g:preview_root.'/'.&ft.'.scroll.vim'
 			autocmd BufUnload <buffer> call <SID>preview_stop()
 		execute "augroup END"
 	else
