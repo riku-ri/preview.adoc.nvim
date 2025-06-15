@@ -8,12 +8,6 @@ if !exists('g:preview_tmp')
 	let g:preview_tmp = '.'
 endif
 
-let s:preview_ft_filename         = 'g:preview_'.&ft.'_vimrc'
-let s:preview_ft_filename_default = g:preview_root.'/'.&ft.'.vim'
-if !exists(s:preview_ft_filename)
-	execute 'let '.s:preview_ft_filename.' = '.'"'.s:preview_ft_filename_default.'"'
-endif
-
 if !exists('g:preview_browser')
 	let g:preview_browser = 'chromium'
 elseif(g:preview_browser == "")
@@ -112,15 +106,15 @@ else
 endif
 
 function! s:preview_timer_call(timer)
-	silent execute 'so '.eval('g:preview_'.&ft.'_vimrc')
+	silent execute 'so '.g:preview_root.'/'.&ft.'.body.vim'
 endfunction
 
-if(filereadable(eval('g:preview_'.&ft.'_vimrc')))
+if(filereadable(g:preview_root.'/'.&ft.'.body.vim'))
 	if !g:preview_timer_mode
-		execute 'so '.eval('g:preview_'.&ft.'_vimrc')
+		execute 'so '.g:preview_root.'/'.&ft.'.body.vim'
 		execute "augroup preview".&ft
 			autocmd!
-			autocmd InsertLeave,TextChanged,TextChangedI <buffer> silent execute 'so '.eval('g:preview_'.&ft.'_vimrc')
+			autocmd InsertLeave,TextChanged,TextChangedI <buffer> silent execute 'so '.g:preview_root.'/'.&ft.'.body.vim'
 			autocmd BufUnload <buffer> call <SID>preview_stop()
 		execute "augroup END"
 	else
@@ -130,7 +124,7 @@ if(filereadable(eval('g:preview_'.&ft.'_vimrc')))
 		endif
 	endif
 else
-	echoerr "file `" eval('g:preview_'.&ft.'_vimrc') "` can not be read"
+	echoerr "file `" g:preview_root.'/'.&ft.'.body.vim' "` can not be read"
 	call <SID>preview_stop()
 	finish
 endif
