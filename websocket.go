@@ -167,30 +167,27 @@ func main() {
 					var websocket = null;
 					var wsuri = "ws://127.0.0.1` + addr[strings.LastIndex(addr, ":"):] + `";
 					window.onload = function () {
-						let times = 1;
 						console.log("onload");
 						websocket = new WebSocket(wsuri);
 						websocket.onopen = function () {};
 						websocket.onmessage = function (e) {
-							//location.assign(location.href.substr(0,location.href.indexOf('?')) + "?randomForRefresh=" + Date.now())
 							const body = document.getElementsByTagName('body');
-							body[0].innerHTML = e.data;
-							times++;
-							body[0].innerHTML = times;
-							//var imgs = document.getElementsByTagName('img');
-							//imgs = Array.prototype.slice.call(imgs); /* DOM list -> DOM node array */
-							//imgs.forEach((val) => refresh(val));
-
-							//var svgs = document.getElementsByTagName('svg');
-							//svgs = Array.prototype.slice.call(svgs);
-							//svgs.forEach((val) => val.removeAttribute("viewbox"));
-							//if(window.innerHeight < window.innerWidth) {
-							//	svgs.forEach((val) => val.setAttribute("height", "100%"));
-							//	svgs.forEach((val) => val.removeAttribute("width"));
-							//} else {
-							//	svgs.forEach((val) => val.setAttribute("width", "100%"));
-							//	svgs.forEach((val) => val.removeAttribute("height"));
-							//}
+							var json = JSON.parse(e.data)
+							if("body" in json)
+								body[0].innerHTML = json["body"];
+							if("move" in json) {
+								const percentage = JSON.parse(json["move"])[0]/JSON.parse(json["move"])[1]*100
+							  // Ensure the percentage is within the valid range (0-100)
+								const validPercentage = Math.max(0, Math.min(100, percentage));
+								const totalHeight = Math.max(
+									document.documentElement.scrollHeight,
+									document.body.scrollHeight
+								);
+								const viewportHeight = window.innerHeight;
+								const maxScrollableHeight = totalHeight - viewportHeight;
+								const targetScrollPosition = maxScrollableHeight * (percentage / 100);
+								window.scrollTo(0, targetScrollPosition);
+							}
 						};
 					};
 					window.onbeforeunload = function () {
