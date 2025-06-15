@@ -1,10 +1,22 @@
-The text pass:[<del>strike this</del>]
-Mark my words, #automation is essential#.
+:gr: https://github.com/riku-ri/asciidoc-preview.nvim[asciidoc-preview.nvim]
+:preview_nvim: https://github.com/riku-ri/preview.nvim[riku-ri/preview.nvim]
 
-##Mark##up refers to text that contains formatting ##mark##s.
+== {gr}
 
-Where did all the [.underline]#cores# go?
+This is a previewer for asciidoc format.
 
-We need [.line-through]#ten# twenty VMs.
+I moved from markdown to asciidoc currently,
+it is mainly because:
 
-A [.myrole]#custom role# must be fulfilled by the theme.
+- markdown has no variable
+- markdown use tail space to break line
+
+{gr} is based on {preview_nvim}.
+{preview_nvim} is a preview template for neovim.
+{preview_nvim} contain some non-documentation file type,
+like graphviz dot, R.
+
+These file type may make a huge different between the source code and the products.
+So auto scroll should not apply to them.
+
+But I'm going to add the auto scroll feature for asciidoc.
