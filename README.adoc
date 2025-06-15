@@ -1,3 +1,4 @@
+The text pass:[<del>strike this</del>]
 Mark my words, #automation is essential#.
 
 ##Mark##up refers to text that contains formatting ##mark##s.
