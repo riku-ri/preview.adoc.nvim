@@ -1,7 +1,7 @@
-:gr: https://github.com/riku-ri/asciidoc-preview.nvim[asciidoc-preview.nvim]
+:i: https://github.com/riku-ri/asciidoc-preview.nvim[asciidoc-preview.nvim]
 :preview_nvim: https://github.com/riku-ri/preview.nvim[riku-ri/preview.nvim]
 
-== {gr}
+== {i}
 
 This is a previewer for asciidoc format.
 
@@ -11,7 +11,7 @@ it is mainly because:
 - markdown has no variable
 - markdown use tail space to break line
 
-{gr} is based on {preview_nvim}.
+{i} is based on {preview_nvim}.
 {preview_nvim} is a preview template for neovim.
 {preview_nvim} contain some non-documentation file type,
 like graphviz dot, R.
@@ -57,8 +57,8 @@ ____
 === Building
 
 There is only a golang file `websocket.go`.
-So after clone {gr},
-just go into the {gr} root path and build a go project.
+So after clone {i},
+just go into the {i} root path and build a go project.
 [,sh]
 ----
 go mod init websocket
@@ -68,7 +68,7 @@ go build
 
 === Using
 
-In neovim, source the link:preview.nvim[`preview.nvim`] in {gr} root path.
+In neovim, source the link:preview.nvim[`preview.nvim`] in {i} root path.
 For example,
 [,sh]
 ----
@@ -87,7 +87,7 @@ if this changed, `go` may change the output binary file name too.
 It may lead to `preview.nvim` connot find the file
 ____
 
-After executing the command above, {gr} should be in `/tmp/apnv`.
+After executing the command above, {i} should be in `/tmp/apnv`.
 Run `:so /tmp/apnv/preview.nvim` may open a web browser and update from neovim content:
 
 * If the `g:preview_browser` is not set,
