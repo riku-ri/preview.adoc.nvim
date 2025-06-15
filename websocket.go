@@ -167,6 +167,7 @@ func main() {
 					var websocket = null;
 					var wsuri = "ws://127.0.0.1` + addr[strings.LastIndex(addr, ":"):] + `";
 					window.onload = function () {
+						let times = 1;
 						console.log("onload");
 						websocket = new WebSocket(wsuri);
 						websocket.onopen = function () {};
@@ -174,6 +175,8 @@ func main() {
 							//location.assign(location.href.substr(0,location.href.indexOf('?')) + "?randomForRefresh=" + Date.now())
 							const body = document.getElementsByTagName('body');
 							body[0].innerHTML = e.data;
+							times++;
+							body[0].innerHTML = times;
 							//var imgs = document.getElementsByTagName('img');
 							//imgs = Array.prototype.slice.call(imgs); /* DOM list -> DOM node array */
 							//imgs.forEach((val) => refresh(val));
