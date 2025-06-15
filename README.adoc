@@ -20,3 +20,50 @@ These file type may make a huge different between the source code and the produc
 So auto scroll should not apply to them.
 
 But I'm going to add the auto scroll feature for asciidoc.
+
+=== Requirements
+
+==== For building
+
+- golang
+
+==== For using
+
+- Linux
+- neovim
+____
+vim may work, but I never test vim
+____
+- python3
+- A web browser
+____
+link:preview.nvim[`preview.nvim`] use chromium by default,
+this can be set by vim variable `g:preview_browser`
+____
+
+=== Building
+
+There is only a golang file `websocket.go`.
+So after clone {gr},
+just go into the {gr} root path and build a go project.
+[,sh]
+----
+go mod init websocket
+go mod tidy
+go build
+----
+
+=== Using
+
+In neovim, source the link:preview.nvim[`preview.nvim`] in {gr} root path.
+For example,
+[,sh]
+----
+git clone https://github.com/riku-ri/asciidoc-preview.nvim /tmp/apnv
+cd /tmp/apnv
+go mod init apnv
+go mod tidy
+go mod build
+----
+After executing the command above, {gr} should be in `/tmp/apnv`.
+Run `:so /tmp/apnv/preview.nvim` may open a web browser and update from neovim content.
