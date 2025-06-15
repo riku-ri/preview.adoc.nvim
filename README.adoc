@@ -69,9 +69,17 @@ For example,
 ----
 git clone https://github.com/riku-ri/asciidoc-preview.nvim /tmp/apnv
 cd /tmp/apnv
-go mod init apnv
+go mod init websocket
 go mod tidy
 go mod build
 ----
+____
+In the commands above,
+it is recommended don't change `websocket` in
+`git mod init websocket`.
+Because the `preview.nvim` will startup a program named websocket,
+if this changed, `go` may change the output binary file name too.
+It may lead to `preview.nvim` connot find the file
+____
 After executing the command above, {gr} should be in `/tmp/apnv`.
 Run `:so /tmp/apnv/preview.nvim` may open a web browser and update from neovim content.
