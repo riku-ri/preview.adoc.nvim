@@ -186,7 +186,10 @@ func main() {
 								const viewportHeight = window.innerHeight;
 								const maxScrollableHeight = totalHeight - viewportHeight;
 								const targetScrollPosition = maxScrollableHeight * (percentage / 100);
-								window.scrollTo(0, targetScrollPosition);
+								window.scrollTo({
+									top: targetScrollPosition,
+									behavior: 'smooth'
+								});
 							}
 						};
 					};
