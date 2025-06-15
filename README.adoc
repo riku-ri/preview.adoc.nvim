@@ -40,6 +40,11 @@ ____
 link:preview.nvim[`preview.nvim`] use chromium by default,
 this can be set by vim variable `g:preview_browser`
 ____
+- asciidoctor
+____
+This is defined in link:asciidoc.vim[asciidoc.vim],
+replace `s:cmd` to change it
+____
 
 === Building
 
