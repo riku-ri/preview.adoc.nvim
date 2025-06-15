@@ -9,9 +9,9 @@ if !exists('g:preview_tmp')
 endif
 
 if !exists('g:preview_browser')
-	let g:preview_browser = 'chromium'
+	let g:preview_browser = 'curl'
 elseif(g:preview_browser == "")
-	let g:preview_browser = 'chromium'
+	let g:preview_browser = 'curl'
 endif
 
 let g:preview_websocket_program = g:preview_root.'/'.'websocket'

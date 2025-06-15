@@ -39,13 +39,18 @@ ____
 * A web browser
 +
 ____
-link:preview.nvim[`preview.nvim`] use chromium by default,
+link:preview.nvim[`preview.nvim`] use curl by default,
 this can be set by vim variable `g:preview_browser`
+
+> In fact `curl` do nothing as a browser.
+> This is to disable open a Linux browser in WSL.
 ____
 * asciidoctor
 +
 ____
-This is defined in link:asciidoc.vim[asciidoc.vim],
+This is defined in
+link:asciidoc.body.vim[asciidoc.body.vim] and
+link:asciidoc.scroll.vim[asciidoc.scroll.vim],
 replace `s:cmd` to change it
 ____
 
@@ -81,5 +86,23 @@ Because the `preview.nvim` will startup a program named websocket,
 if this changed, `go` may change the output binary file name too.
 It may lead to `preview.nvim` connot find the file
 ____
+
 After executing the command above, {gr} should be in `/tmp/apnv`.
-Run `:so /tmp/apnv/preview.nvim` may open a web browser and update from neovim content.
+Run `:so /tmp/apnv/preview.nvim` may open a web browser and update from neovim content:
+
+* If the `g:preview_browser` is not set,
+the default "browser" `curl` will not show anything.
+In such a case:
+. Open another web browser
+. Open file in the web browser
+.. Go into the path where you are editing asciidoc file and open the html file.
+	The html file should be with a strange number prefix, it is the neovim pid.
++
+____
+There is a subtle difference between "where you are editing asciidoc file"
+and "where the asciidoc file exists" here.
+
+For example, for a asciidoc file `/tmp/tmp/whatever.adoc`.
+If you are in `/tmp` and then `nvim tmp/whatever.adoc`,
+in the web browser you should go to `/tmp` path to find the html file.
+____
