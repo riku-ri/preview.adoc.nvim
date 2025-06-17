@@ -1,7 +1,7 @@
 :i: https://github.com/riku-ri/asciidoc-preview.nvim[asciidoc-preview.nvim]
 :preview_nvim: https://github.com/riku-ri/preview.nvim[riku-ri/preview.nvim]
 
-== {i}
+= {i}
 
 This is a previewer for asciidoc format.
 
@@ -21,13 +21,13 @@ So auto scroll should not apply to them.
 
 But I'm going to add the auto scroll feature for asciidoc.
 
-=== Requirements
+== Requirements
 
-==== For building
+=== For building
 
 * golang
 
-==== For using
+=== For using
 
 * Linux
 * neovim
@@ -54,7 +54,7 @@ link:asciidoc.scroll.vim[asciidoc.scroll.vim],
 replace `s:cmd` to change it
 ____
 
-=== Building
+== Building
 
 There is only a golang file `websocket.go`.
 So after clone {i},
@@ -66,7 +66,7 @@ go mod tidy
 go build
 ----
 
-=== Using
+== Using
 
 In neovim, source the link:preview.nvim[`preview.nvim`] in {i} root path.
 For example,
