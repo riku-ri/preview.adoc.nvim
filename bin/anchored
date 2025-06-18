@@ -1,1 +1,72 @@
 #!/usr/bin/env python
+
+import sys
+import re
+
+splitlines = sys.stdin.read().splitlines()
+lines = splitlines.copy()
+
+skip = {
+	"^:[A-Za-z_]+:" , # probable self-defined variable
+	"^\\s*$" , # emptyline
+}
+
+last = {
+	"^\\+$" , # probable hang block
+	"^_{4,}$" # probable quoteed block
+}
+
+incode = None
+
+for i,l in enumerate(lines) :
+	if False : pass
+	elif incode is not None :
+		lines[i] = '<'
+		if l==incode :
+			incode = None
+	elif re.search("^\\[" , l) :
+		if re.search("\\]$" , l) :
+			lines[i] = '<' # the code language line
+	elif re.search("^-{4,}$" , l) :
+		lines[i] = '<' # anchor to where the code block did not begin
+		incode = l
+	elif any(map(lambda r:re.search(r , l) , skip)) :
+		lines[i] = '<' # don't anchor this line
+	elif any(map(lambda r:re.search(r , l) , last)) :
+		lines[i] = '-' # anchor to last line
+	else :
+		lines[i] = None
+
+lastanchor = 0
+delay = set()
+#^^^ this is to prevent when the line 0 is not true content, such as asciidoc variable :var:
+#^^^ the later program can not find where to anchor it
+for i,l in enumerate(lines) :
+	if False: pass
+	elif l==None :
+		lines[i] = {i}
+		lastanchor = i
+		if len(delay)>0 :
+			lines[i] = lines[i].union(delay)
+			delay = set()
+	elif l=='<' :
+		if lastanchor==0 :
+			delay.add(i)
+		else:
+			lines[lastanchor].add(i)
+		lines[i] = set()
+	elif l=='-' :
+		lines[lastanchor].add(i)
+		lines[i] = set()
+
+for i,l in enumerate(lines) :
+	if len(l)>0 :
+		lines[i] = ' pass:[' + ''.join(map(lambda __:f'<div id="al{__}"/>' , l)) + ']'
+	else :
+		lines[i] = ''
+
+lines = [
+	f'{splitlines[i]}{lines[i]}'
+	for i in range(len(lines))
+]
+print('\n'.join(lines))

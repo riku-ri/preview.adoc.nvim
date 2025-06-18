@@ -176,20 +176,7 @@ func main() {
 							if("body" in json)
 								body[0].innerHTML = json["body"];
 							if("move" in json) {
-								const percentage = JSON.parse(json["move"])[0]/JSON.parse(json["move"])[1]*100
-							  // Ensure the percentage is within the valid range (0-100)
-								const validPercentage = Math.max(0, Math.min(100, percentage));
-								const totalHeight = Math.max(
-									document.documentElement.scrollHeight,
-									document.body.scrollHeight
-								);
-								const viewportHeight = window.innerHeight;
-								const maxScrollableHeight = totalHeight - viewportHeight;
-								const targetScrollPosition = maxScrollableHeight * (percentage / 100)
-								window.scrollTo({
-									top: targetScrollPosition,
-									behavior: 'smooth'
-								});
+								location.href = "#al".concat(JSON.parse(json["move"])[0])
 							}
 						};
 					};
