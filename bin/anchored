@@ -4,7 +4,6 @@ import sys
 import re
 
 splitlines = sys.stdin.read().splitlines()
-lines = splitlines.copy()
 
 skip = {
 	"^:[A-Za-z_]+:" , # probable self-defined variable
@@ -18,6 +17,17 @@ last = {
 
 incode = None
 
+for i,l in enumerate(splitlines) :
+	if re.search("^= " , l) : # the book title
+		splitlines = splitlines[0:i+1] + ['','pass:[<div/>]',''] + splitlines[i+1:len(splitlines)]
+		'''
+		In the $(asciidoctor -s) default settings,
+		asciidoctor does not show the book titile in content
+		anchor to book titile will make a missing anchor
+		So here insert a non-empty line but non-content things
+		'''
+		break
+lines = splitlines.copy()
 for i,l in enumerate(lines) :
 	if False : pass
 	elif incode is not None :
@@ -28,12 +38,14 @@ for i,l in enumerate(lines) :
 		if re.search("\\]$" , l) :
 			lines[i] = '<' # the code language line
 	elif re.search("^-{4,}$" , l) :
-		lines[i] = '<' # anchor to where the code block did not begin
+		lines[i] = '<' # don't anchor this line, anchor to the previous
 		incode = l
 	elif any(map(lambda r:re.search(r , l) , skip)) :
-		lines[i] = '<' # don't anchor this line
+		lines[i] = '<'
 	elif any(map(lambda r:re.search(r , l) , last)) :
-		lines[i] = '-' # anchor to last line
+		lines[i] = '<'
+	elif re.search("^$" , l) : # empty line
+		lines[i] = '<'
 	else :
 		lines[i] = None
 
