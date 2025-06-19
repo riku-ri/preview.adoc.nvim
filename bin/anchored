@@ -46,6 +46,8 @@ for i,l in enumerate(lines) :
 		lines[i] = '<'
 	elif re.search("^$" , l) : # empty line
 		lines[i] = '<'
+	elif re.search("^-{3}" , l) : # hrule
+		lines[i] = '<'
 	else :
 		lines[i] = None
 
