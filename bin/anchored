@@ -19,7 +19,7 @@ incode = None
 
 for i,l in enumerate(splitlines) :
 	if re.search("^= " , l) : # the book title
-		splitlines = splitlines[0:i+1] + ['','pass:[<div/>]',''] + splitlines[i+1:len(splitlines)]
+		splitlines = splitlines[0:i+1] + ['','pass:[<span/>]',''] + splitlines[i+1:len(splitlines)]
 		'''
 		In the $(asciidoctor -s) default settings,
 		asciidoctor does not show the book titile in content
@@ -76,7 +76,7 @@ Currently, anchors in lines[] is match to the line in asciidoc.
 
 Due to the asciidoc syntax,
 to prevent asciidoc parser parse the anchor to true content in page,
-we can add a empty <div/> tag at the tail of the asciidoc line.
+we can add a empty <span/> tag at the tail of the asciidoc line.
 
 But if insert the anchors at the tail,
 when web browser javascript go to the anchor,
@@ -102,7 +102,7 @@ for i,l in enumerate(lines) :
 
 for i,l in enumerate(lines) :
 	if len(l)>0 :
-		lines[i] = ' pass:[' + ''.join(map(lambda __:f'<div id="al{__}"/>' , l)) + ']'
+		lines[i] = ' pass:[' + ''.join(map(lambda __:f'<span id="al{__}"/>' , l)) + ']'
 	else :
 		lines[i] = ''
 
