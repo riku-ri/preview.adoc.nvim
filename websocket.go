@@ -176,7 +176,9 @@ func main() {
 							if("body" in json)
 								body[0].innerHTML = json["body"];
 							if("move" in json) {
-								location.href = "#al".concat(JSON.parse(json["move"])[0])
+								const anchor = document.getElementById("al".concat(JSON.parse(json["move"])[0]))
+								anchor.scrollIntoView()
+								//location.href = "#al".concat(JSON.parse(json["move"])[0])
 							}
 						};
 					};
