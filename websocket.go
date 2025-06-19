@@ -177,8 +177,16 @@ func main() {
 								body[0].innerHTML = json["body"];
 							if("move" in json) {
 								const anchor = document.getElementById("al".concat(JSON.parse(json["move"])[0]))
-								anchor.scrollIntoView({behavior: 'smooth'})
 								//location.href = "#al".concat(JSON.parse(json["move"])[0])
+								//anchor.scrollIntoView({behavior: 'smooth'})
+								window.scrollBy({
+									top: (anchor.getBoundingClientRect().top - (0.1*window.innerHeight)),
+									// here 0.1 is just a random number.
+									// to make it center in the page it should be 0.5
+									// but center is not always good to see espcially when it is a huge element
+									left: 0,
+									behavior: "smooth",
+								})
 							}
 						};
 					};
