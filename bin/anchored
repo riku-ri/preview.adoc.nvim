@@ -59,6 +59,35 @@ for i,l in enumerate(lines) :
 		lines[lastanchor].add(i)
 		lines[i] = set()
 
+'''
+Currently, anchors in lines[] is match to the line in asciidoc.
+
+Due to the asciidoc syntax,
+to prevent asciidoc parser parse the anchor to true content in page,
+we can add a empty <div/> tag at the tail of the asciidoc line.
+
+But if insert the anchors at the tail,
+when web browser javascript go to the anchor,
+the line is exactly above the view content.
+Because the anchor is at the end of asciidoc line, which means the "next html element"
+
+Hence the later code shift anchor to the location of the previous anchor
+'''
+
+
+lines = list(reversed(lines))
+
+next = set()
+for i,l in enumerate(lines) :
+	if len(l)>0 :
+		lines[i] , next = next , lines[i]
+
+lines = list(reversed(lines))
+for i,l in enumerate(lines) :
+	if len(l)>0 :
+		lines[i] = lines[i].union(next)
+		break
+
 for i,l in enumerate(lines) :
 	if len(l)>0 :
 		lines[i] = ' pass:[' + ''.join(map(lambda __:f'<div id="al{__}"/>' , l)) + ']'
