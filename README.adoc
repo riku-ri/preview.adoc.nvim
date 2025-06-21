@@ -1,4 +1,4 @@
-:i: https://github.com/riku-ri/asciidoc-preview.nvim[asciidoc-preview.nvim]
+:i: https://github.com/riku-ri/preview.adoc.nvim[preview.adoc.nvim]
 :preview_nvim: https://github.com/riku-ri/preview.nvim[riku-ri/preview.nvim]
 
 = {i}
@@ -72,7 +72,7 @@ In neovim, source the link:preview.nvim[`preview.nvim`] in {i} root path.
 For example,
 [,sh]
 ----
-git clone https://github.com/riku-ri/asciidoc-preview.nvim /tmp/apnv
+git clone https://github.com/riku-ri/preview.adoc.nvim /tmp/apnv
 cd /tmp/apnv
 go mod init websocket
 go mod tidy
