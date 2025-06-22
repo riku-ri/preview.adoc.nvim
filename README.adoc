@@ -45,8 +45,8 @@ link:preview.nvim[`preview.nvim`] use curl by default,
 this can be set by vim variable `g:preview_browser`
 
 > In fact `curl` do nothing as a browser.
-> > This is to disable open a Linux browser in WSL.
-> > > This is to disable open a Linux browser in WSL.
+> This means {i} will not open any browser when
+> `g:preview_browser` is not set.
 ____
 * asciidoctor
 +
