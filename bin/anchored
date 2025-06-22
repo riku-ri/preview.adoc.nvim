@@ -6,7 +6,7 @@ import re
 splitlines = sys.stdin.read().splitlines()
 
 skip = {
-	"^:[A-Za-z_]+:" , # probable self-defined variable
+	"^:[A-Za-z0-9_]+:" , # probable self-defined variable
 	"^\\s*$" , # emptyline
 }
 
